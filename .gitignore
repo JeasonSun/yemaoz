@@ -1,0 +1,14 @@
+### VSCode
+.vscode
+*.project
+*.factorypath
+
+### Mac
+.DS_Store
+*/.DS_Store
+
+### node
+node_modules
+
+### dist
+dist
