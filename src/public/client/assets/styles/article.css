@@ -79,3 +79,16 @@
   border: 2px solid rgba(255,255,255,.78);
   color: #0ed2f7;
 }
+
+.article-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.article-detail{
+  flex: 1;
+}
+
+.article-directory{
+  
+}
