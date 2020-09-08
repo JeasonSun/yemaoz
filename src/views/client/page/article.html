@@ -19,8 +19,163 @@
     <div class="main-content">
       <%- include('../components/banner/article-banner.html'); %>
       <div class="article-container">
-        <div class="article-detail"></div>
-        <div class="article-directory"></div>
+        <div class="article-detail">
+          练题法则 5-10 分钟读题与思考 不要纠结没有思路就直接看题解；
+不要死磕觉得自己很失败，怎么我们就想不出来；
+基本上这些算法题，让我们自己想出来是不可能的； 拿跳表的来说，如果我们能从 0-1
+把它想出来，那我们就可以拿到图灵奖了；
+所以记住！无思路就直接看题解，无思路就直接看题解，无思路就直接看题解！
+我们只需要知道并且能运用即可！
+
+        </div>
+        <div class="article-sidebar">
+          <!-- <div class="box">
+            <div class="subbox"></div>
+          </div> -->
+          <div class="box sticky">
+            <div class="subbox">
+              <h4>目录</h4>
+              <ol class="toc">
+                <li class="toc-item toc-level-1 active">
+                  <a class="toc-link" href="#练题法则"
+                    ><span class="toc-number">1.</span>
+                    <span class="toc-text">练题法则</span></a
+                  >
+                  <ol class="toc-child">
+                    <li class="toc-item toc-level-2">
+                      <a class="toc-link" href="#在哪里练题？"
+                        ><span class="toc-number">1.1.</span>
+                        <span class="toc-text">在哪里练题？</span></a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="toc-item toc-level-1">
+                  <a class="toc-link" href="#283-题-移动零"
+                    ><span class="toc-number">2.</span>
+                    <span class="toc-text">283 题 - 移动零</span></a
+                  >
+                  <ol class="toc-child">
+                    <li class="toc-item toc-level-2">
+                      <a class="toc-link" href="#题目讲解"
+                        ><span class="toc-number">2.1.</span>
+                        <span class="toc-text">题目讲解</span></a
+                      >
+                    </li>
+                    <li class="toc-item toc-level-2">
+                      <a class="toc-link" href="#解题思路"
+                        ><span class="toc-number">2.2.</span>
+                        <span class="toc-text">解题思路</span></a
+                      >
+                    </li>
+                    <li class="toc-item toc-level-2">
+                      <a class="toc-link" href="#解题代码"
+                        ><span class="toc-number">2.3.</span>
+                        <span class="toc-text">解题代码</span></a
+                      >
+                    </li>
+                    <li class="toc-item toc-level-2">
+                      <a class="toc-link" href="#边界测试用例"
+                        ><span class="toc-number">2.4.</span>
+                        <span class="toc-text">边界测试用例</span></a
+                      >
+                    </li>
+                    <li class="toc-item toc-level-2">
+                      <a class="toc-link" href="#题解对比与分析"
+                        ><span class="toc-number">2.5.</span>
+                        <span class="toc-text">题解对比与分析</span></a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="toc-item toc-level-1">
+                  <a class="toc-link" href="#11-题-盛最多水的容器"
+                    ><span class="toc-number">3.</span>
+                    <span class="toc-text">11 题 - 盛最多水的容器</span></a
+                  >
+                  <ol class="toc-child">
+                    <li class="toc-item toc-level-2">
+                      <a class="toc-link" href="#题目讲解-1"
+                        ><span class="toc-number">3.1.</span>
+                        <span class="toc-text">题目讲解</span></a
+                      >
+                    </li>
+                    <li class="toc-item toc-level-2">
+                      <a class="toc-link" href="#解题思路-1"
+                        ><span class="toc-number">3.2.</span>
+                        <span class="toc-text">解题思路</span></a
+                      >
+                    </li>
+                    <li class="toc-item toc-level-2">
+                      <a class="toc-link" href="#解题代码-1"
+                        ><span class="toc-number">3.3.</span>
+                        <span class="toc-text">解题代码</span></a
+                      >
+                    </li>
+                    <li class="toc-item toc-level-2">
+                      <a class="toc-link" href="#题解对比与分析-1"
+                        ><span class="toc-number">3.4.</span>
+                        <span class="toc-text">题解对比与分析</span></a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="toc-item toc-level-1">
+                  <a class="toc-link" href="#70-题-爬楼梯"
+                    ><span class="toc-number">4.</span>
+                    <span class="toc-text">70 题 - 爬楼梯</span></a
+                  >
+                  <ol class="toc-child">
+                    <li class="toc-item toc-level-2">
+                      <a class="toc-link" href="#题目讲解-2"
+                        ><span class="toc-number">4.1.</span>
+                        <span class="toc-text">题目讲解</span></a
+                      >
+                      <ol class="toc-child">
+                        <li class="toc-item toc-level-3">
+                          <a class="toc-link" href="#题解重点"
+                            ><span class="toc-number">4.1.1.</span>
+                            <span class="toc-text">题解重点</span></a
+                          >
+                        </li>
+                        <li class="toc-item toc-level-3">
+                          <a class="toc-link" href="#深度分析题目："
+                            ><span class="toc-number">4.1.2.</span>
+                            <span class="toc-text">深度分析题目：</span></a
+                          >
+                        </li>
+                      </ol>
+                    </li>
+                    <li class="toc-item toc-level-2">
+                      <a class="toc-link" href="#解题思路-2"
+                        ><span class="toc-number">4.2.</span>
+                        <span class="toc-text">解题思路</span></a
+                      >
+                    </li>
+                    <li class="toc-item toc-level-2">
+                      <a class="toc-link" href="#解题代码-2"
+                        ><span class="toc-number">4.3.</span>
+                        <span class="toc-text">解题代码</span></a
+                      >
+                    </li>
+                    <li class="toc-item toc-level-2">
+                      <a class="toc-link" href="#题解对比与分析-2"
+                        ><span class="toc-number">4.4.</span>
+                        <span class="toc-text">题解对比与分析</span></a
+                      >
+                    </li>
+                  </ol>
+                </li>
+                <li class="toc-item toc-level-1">
+                  <a class="toc-link" href="#推荐专栏"
+                    ><span class="toc-number">5.</span>
+                    <span class="toc-text">推荐专栏</span></a
+                  >
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <%- include('../components/footer/index.html'); %>

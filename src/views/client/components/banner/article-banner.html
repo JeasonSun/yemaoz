@@ -5,18 +5,24 @@
     <div class="main-wrap">
       <div class="article-detail__time">
         <b>「 </b>
+        <% detail.category.forEach(function(cate){ %>
         <span>
-          分类 
+          <%= cate.name %>
         </span>
-        <b>」</b> 
-        四月 25, 2020 
+
+        <% }) %>
+        <b>」</b>
+        四月 25, 2020
       </div>
       <div class="article-detail__title">
-        VSCode插件大全
+        <%= detail.name %>
       </div>
       <div class="article-detail__tags">
-        <span>标签一</span>
-        <span>标签二</span>
+        <% detail.tags.forEach(function(tag){ %>
+        <span>
+          <%= tag.name %>
+        </span>
+        <% }) %>
       </div>
     </div>
   </div>
