@@ -6,15 +6,10 @@
   "scripts": {
     "watch": "babel src --copy-files --watch --out-dir dist --ignore src/public --verbose --source-maps",
     "dev": "cross-env NODE_ENV=development nodemon dist/starter.js",
-    "build":"babel src --copy-files --out-dir dist --ignore src/public --verbose --source-maps",
+    "build": "babel src --copy-files --out-dir dist --ignore src/public --verbose --source-maps",
     "prod": "cross-env NODE_ENV=production npm run build && node dist/starter.js"
   },
-  "keywords": [
-    "Node",
-    "MongoDB",
-    "Koa",
-    "yuque"
-  ],
+  "keywords": ["Node", "MongoDB", "Koa", "yuque"],
   "author": "摩诘<mojie>",
   "license": "MIT",
   "dependencies": {
@@ -32,10 +27,10 @@
     "koa-static": "^5.0.0",
     "koa-views": "^6.3.0",
     "marked": "^1.1.1",
-    "pug": "^3.0.0"
+    "pug": "^3.0.0",
+    "cross-env": "^7.0.2"
   },
   "devDependencies": {
-    "cross-env": "^7.0.2",
     "nodemon": "^2.0.4"
   }
 }
