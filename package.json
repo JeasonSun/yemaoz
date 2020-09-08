@@ -6,7 +6,8 @@
   "scripts": {
     "watch": "babel src --copy-files --watch --out-dir dist --ignore src/public --verbose --source-maps",
     "dev": "cross-env NODE_ENV=development nodemon dist/starter.js",
-    "prod": "cross-env NODE_ENV=production node dist/starter.js"
+    "build":"babel src --copy-files --out-dir dist --ignore src/public --verbose --source-maps",
+    "prod": "cross-env NODE_ENV=production npm run build && node dist/starter.js"
   },
   "keywords": [
     "Node",

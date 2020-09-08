@@ -1,0 +1,24 @@
+apps:
+   - script: ./dist/start.js    # 入口文件
+    name: Yemaoz-Blog  #程序名称
+    env:
+      COMMON_VARIABLE: true
+    env_production:
+      NODE_ENV: production
+deploy:                     # 部署脚本
+  production:               # 生产环境
+    user: work              # 服务器的用户名
+    host:                   # 服务器的ip地址
+      - 140.143.151.77
+    port: '22'              # ssh端口
+    ref: origin/dev
+    repo: git@github.com:JeasonSun/yemaoz.git
+    # 服务器上项目部署的目录，会在/www/yemaoz下初始化一个production文件夹
+    # 配置文件会自动从git上面拉取静态网站代码到此路径
+    path: /home/work/www/work/production
+    
+    ssh_options: StrictHostKeyChecking=no
+    pre-deploy: git fetch --all
+    post-deploy: 'npm i && npm run prod && pm2 startOrRestart ecosystem.yaml --env production'
+    env:
+      NODE_ENV: production
