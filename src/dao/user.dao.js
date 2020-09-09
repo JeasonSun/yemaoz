@@ -3,6 +3,7 @@ import { Existing } from '~/plugin/http-exception'
 
 class UserDao {
   async findUser (where) {
+    console.log(where)
     const user = await usersModel.findOne({
       where
     })
