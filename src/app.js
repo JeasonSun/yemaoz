@@ -2,6 +2,7 @@ import Koa from 'koa'
 import path from 'path'
 import koaLogger from 'koa-logger'
 import cors from '@koa/cors'
+import catchError from '~/middleware/exception'
 import bodyParser from 'koa-bodyparser'
 import koaStatic from 'koa-static'
 import views from 'koa-views'
@@ -28,6 +29,9 @@ async function createApp () {
 
   // 配置跨域
   app.use(cors())
+
+  // 全局错误捕捉
+  app.use(catchError)
 
   // 配置bodyParser
   app.use(bodyParser())

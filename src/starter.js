@@ -1,8 +1,9 @@
 import path from 'path'
 import fs from 'fs'
 
-import { createApp } from './app'
 import config from './plugin/config-util'
+import { ConnectMongo } from './db/monogo.db'
+import { createApp } from './app'
 
 function applyConfig () {
   const baseDir = path.resolve(__dirname, '..')
@@ -14,6 +15,7 @@ function applyConfig () {
 
 const run = async () => {
   applyConfig()
+  ConnectMongo()
   const app = await createApp()
   const port = config.getItem('port')
   app.listen(port, () => {

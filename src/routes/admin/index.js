@@ -1,9 +1,17 @@
 import Router from 'koa-router'
-import Dashboard from '~/controllers/admin/dashboard.js'
+// import Dashboard from '~/controllers/admin/dashboard.js'
+import Users from '~/controllers/admin/users'
 
-const AdminRoute = new Router()
-AdminRoute.prefix('/admin')
+const router = new Router({
+  prefix: '/admin'
+})
 
-AdminRoute.get('/dashboard', Dashboard.indexPage)
+router.get('/users/list', Users.list)
+router.post('/users/create', Users.create)
+router.get('/users/:id', Users.one)
+router.put('/users/:id', Users.update)
+router.delete('/users/:id', Users.remove)
 
-export default AdminRoute
+// router.get('/dashboard', Dashboard.indexPage)
+
+export default router
