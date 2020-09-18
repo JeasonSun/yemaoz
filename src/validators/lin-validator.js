@@ -70,6 +70,7 @@ class LinValidator {
         errorMsgs.push(result.msg)
       }
     }
+
     if (errorMsgs.length != 0) {
       throw new ParameterException(errorMsgs)
     }
@@ -96,7 +97,6 @@ class LinValidator {
           }
         }
       } catch (error) {
-        console.log('error？？', error)
         result = new RuleResult(false, error.msg || error.message || '参数错误')
       }
       // 函数验证

@@ -6,8 +6,7 @@ const userDao = new UserDao()
 class RegisterValidator extends LinValidator {
   constructor () {
     super()
-    console.log('validate')
-    this.nickname = [
+    this.username = [
       new Rule('isNotEmpty', '用户名不可以为空'),
       new Rule('isLength', '用户名长度必须在2~20之间', 2, 20)
     ]
@@ -34,15 +33,13 @@ class RegisterValidator extends LinValidator {
   }
 
   async validateEmail (values) {
-    const email = values.body.email
-    console.log('validateEmail')
-    if(!email){
+    const { username, email } = values.body
+    if (!email || !username) {
       return
     }
-    const admin = await userDao.findUser({ email })
-    console.log('admin',admin)
+    const admin = await userDao.findUser({ email, username })
     if (admin) {
-      return '邮箱已经被注册，请重新输入'
+      return '邮箱或用户名已经被注册，请重新输入'
     }
   }
 }

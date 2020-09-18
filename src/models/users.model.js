@@ -1,48 +1,111 @@
-import mongoose, {Schema} from 'mongoose'
-import { toSha1 } from '~/plugin/utils'
+import mongoose, { Schema } from 'mongoose'
+import bcrypt, { hash } from 'bcrypt'
 
+const SALT_WORK_FACTOR =  10
 /**
  * 用户模型
  */
-const usersSchema = new Schema({
-  // 用户类别
-  type: {
-    type:String,
-    enum: ['admin'],
-    required: true
-  },
+const UserSchema = new Schema(
+  {
+    // 用户类别
+    type: {
+      type: String,
+      enum: ['user', 'admin', 'superAdmin'],
+      default: 'user'
+    },
 
-  // 昵称
-  nickname: {
-    type:String,
-    trim: true,
-    required:true
-  },
+    uuid: {
+      type: String
+    },
 
-  // 邮箱
-  email: {
-    type: String,
-    unique: true,
-    trim: true,
-    lowercase: true,
-    match: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
-    required: true
-  },
+    // 用户名
+    username: {
+      type: String,
+      trim: true,
+      unique: true,
+      required: true
+    },
 
-  // 密码
-  password: {
-    type: String,
-    set: toSha1
-  },
+    // 昵称
+    nickname: {
+      type: String,
+      trim: true
+    },
 
-  // 角色
-  role: {
-    type: Schema.Types.ObjectId,
-    ref: 'Roles'
+    // 邮箱
+    email: {
+      type: String,
+      unique: true,
+      trim: true,
+      lowercase: true,
+      match: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
+      required: true
+    },
+
+    // 密码
+    password: {
+      type: String
+    },
+
+    meta: {
+      createAt: {
+        type: Date,
+        default: Date.now()
+      },
+      updateAt: {
+        type: Date,
+        default: Date.now()
+      }
+    }
+
+    // 角色
+    // role: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'Roles'
+    // }
+  },
+  {
+    id: false,
+    collection: 'users'
   }
-}, {
-  collection: 'users',
-  id: false
+)
+
+UserSchema.pre('save', function (next) {
+  console.log(this,'pre save---')
+  if (this.isNew) {
+    this.meta.createAt = this.meta.updateAt = Date.now()
+  } else {
+    this.meta.updateAt = Date.now()
+  }
+  next()
 })
 
-export default mongoose.model('Users', usersSchema)
+UserSchema.pre('save', function (next) {
+  let user = this
+  if (!user.isModified('password')) return next()
+  
+  // 如果是修改密码，
+  bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
+    if (err) return next(err)
+    bcrypt.hash(user.password, salt, (err, hash) => {
+      if (err) return next(error)
+      user.password = hash
+      next()
+    })
+  })
+})
+
+UserSchema.methods = {
+  comparePassword: function (_password, password) {
+    return new Promise((resolve, reject) => {
+      bcrypt.compare(_password, password, function (err, isMatch) {
+        if (!err) resolve(isMatch)
+        else reject(err)
+      })
+    })
+  }
+}
+
+const usersModel = mongoose.model('Users', UserSchema)
+
+export default usersModel

@@ -24,6 +24,7 @@
     "@babel/preset-env": "^7.1.0",
     "@koa/cors": "^3.1.0",
     "babel-plugin-root-import": "^6.1.0",
+    "bcrypt": "^5.0.0",
     "cross-env": "^7.0.2",
     "crypto": "^1.0.1",
     "ejs": "^3.1.3",

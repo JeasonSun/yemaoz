@@ -2,12 +2,22 @@ import mongoose from 'mongoose'
 import config from '~/plugin/config-util'
 
 const ConnectMongo = function () {
-  const DB_URL = config.getItem('db_url')
+  const dbHost = config.getItem('dbHost')
+  const dbPort = config.getItem('dbPort')
+  const dbName = config.getItem('dbName')
+  const dbUser = config.getItem('dbUser')
+  const dbPassword = config.getItem('dbPassword')
+  let dbUrl = ''
+  if (dbUser && dbPassword) {
+    dbUrl = `mongodb://${dbUser}:${dbPassword}@${dbHost}:${dbPort}/${dbName}?authSource=admin`
+  } else {
+    dbUrl = `mongodb://${dbHost}:${dbPort}/${dbName}`
+  }
 
-  mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 
   mongoose.connection.on('connected', function () {
-    console.log('Mongoose连接成功： ' + DB_URL)
+    console.log('Mongoose连接成功： ' + dbName)
   })
   /**
    * 连接异常 error 数据库连接错误

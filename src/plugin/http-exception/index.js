@@ -10,7 +10,7 @@ class HttpException extends Error {
 class ParameterException extends HttpException {
   constructor (msg, errorCode) {
     super()
-    this.code = 400
+    this.code = 400 
     this.msg = msg || '参数错误'
     this.errorCode = errorCode || 10000
   }
@@ -19,7 +19,7 @@ class ParameterException extends HttpException {
 class AuthFailed extends HttpException {
   constructor (msg, errorCode) {
     super()
-    this.code = 401
+    this.code = 401 
     this.msg = msg || '授权失败'
     this.errorCode = errorCode || 10004
   }
@@ -35,9 +35,9 @@ class NotFound extends HttpException {
 }
 
 class Forbidden extends HttpException {
-  constructor (msg, errorCode) {
+  constructor (msg, errorCode ) {
     super()
-    this.code = 403
+    this.code = 403 
     this.msg = msg || '禁止访问'
     this.errorCode = errorCode || 10006
   }
@@ -46,7 +46,7 @@ class Forbidden extends HttpException {
 class Existing extends HttpException {
   constructor (msg, errorCode) {
     super()
-    this.code = 412
+    this.code = 412 
     this.msg = msg || '已存在'
     this.errorCode = errorCode || 10006
   }

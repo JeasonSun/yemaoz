@@ -3,9 +3,6 @@ import { UserDao } from '~/dao/user.dao'
 
 const userDao = new UserDao()
 
-async function list (ctx) {
-  ctx.body = 'admin/users/list'
-}
 
 /**
  * 创建管理员用户
@@ -16,29 +13,17 @@ async function list (ctx) {
 async function create (ctx) {
   // 通过验证器校验参数是否通过
   const v = await new RegisterValidator().validate(ctx)
-  // console.log()
   // 创建管理员
-  const admin = userDao.save({
+  const admin = await userDao.save({
     email: v.get('body.email'),
     password: v.get('body.password2'),
-    nickname: v.get('body.nickname')
+    username: v.get('body.username'),
+    nickname: v.get('body.nickname'),
+    type: 'admin'
   })
 
   //返回结果
-  ctx.response.status = 200
-  ctx.body = JSON.stringify(v)
+  ctx.success(admin)
 }
 
-async function one (ctx) {
-  ctx.body = 'admin/users/one'
-}
-
-async function update (ctx) {
-  ctx.body = 'admin/users/update'
-}
-
-async function remove (ctx) {
-  ctx.body = 'admin/users/remove'
-}
-
-export default { list, create, one, update, remove }
+export default { create }
