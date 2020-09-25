@@ -1,7 +1,13 @@
 import mongoose, { Schema } from 'mongoose'
-import bcrypt, { hash } from 'bcrypt'
+import bcrypt from 'bcrypt'
 
-const SALT_WORK_FACTOR =  10
+export const ROLE = {
+  user: 8,
+  admin: 16,
+  superAdmin: 32
+}
+
+const SALT_WORK_FACTOR = 10
 /**
  * 用户模型
  */
@@ -66,12 +72,13 @@ const UserSchema = new Schema(
   },
   {
     id: false,
-    collection: 'users'
+    collection: 'users',
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
   }
 )
 
 UserSchema.pre('save', function (next) {
-  console.log(this,'pre save---')
   if (this.isNew) {
     this.meta.createAt = this.meta.updateAt = Date.now()
   } else {
@@ -82,8 +89,9 @@ UserSchema.pre('save', function (next) {
 
 UserSchema.pre('save', function (next) {
   let user = this
+
   if (!user.isModified('password')) return next()
-  
+
   // 如果是修改密码，
   bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
     if (err) return next(err)
@@ -105,6 +113,10 @@ UserSchema.methods = {
     })
   }
 }
+
+UserSchema.virtual('scope').get(function () {
+  return ROLE[this.type]
+})
 
 const usersModel = mongoose.model('Users', UserSchema)
 

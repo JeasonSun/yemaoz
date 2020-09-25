@@ -9,11 +9,10 @@ function responseFormat (option = {}) {
       })
     }
 
-    ctx.fail = function (msg, errorCode, code) {
+    ctx.fail = function (msg, errorCode, code = 200) {
       ctx.type = option.type || 'json'
       let errorMsg = msg || option.errorMsg || 'fail'
       errorMsg = [].concat(errorMsg)
-
       ctx.body = JSON.stringify({
         code: errorCode || option.errorCode || 10000,
         msg: errorMsg

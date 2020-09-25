@@ -5,14 +5,13 @@ class UserDao {
   async findUser (where) {
     // const user = usersModel.find({});
     // console.log(where)
-    const user = await usersModel.findOne(where).lean()
-    console.log(user, '获取用户')
+    const user = await usersModel.findOne(where)
     return user
   }
 
   async save (data) {
-    const { email,username } = data
-    console.log('save 保存用户');
+    const { email, username } = data
+    console.log('save 保存用户')
     const user = await this.findUser({
       email,
       username
@@ -25,6 +24,10 @@ class UserDao {
       email: result.email,
       username: result.username
     }
+  }
+
+  async compare (password, _password) {
+    return await new usersModel().comparePassword(password, _password)
   }
 }
 

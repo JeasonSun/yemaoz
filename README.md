@@ -2,7 +2,7 @@
 
 ## 介绍
 
-一款基于语雀API的博客管理系统，技术栈为：Node.js + Koa + MongoDB + Pug + 语雀 API
+一款基于语雀API的博客管理系统，技术栈为：Node.js + Koa + MongoDB + ejs + 语雀 API
 
 ## 主要功能
 

@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
-import crypto from 'crypto'
+import config from '~/plugin/config-util'
+import { AuthFailed } from '../http-exception'
 /***
  *
  */
@@ -31,34 +32,32 @@ const findMembers = function (instance, { prefix, specifiedType, filter }) {
   return _find(instance)
 }
 
-// 颁布令牌
-const generateToken = function (uid, scope) {
-  const secretKey = global.config.security.secretKey
-  const expiresIn = global.config.security.expiresIn
-  const token = jwt.sign(
-    {
-      uid,
-      scope
-    },
-    secretKey,
-    {
-      expiresIn: expiresIn
-    }
-  )
+/**
+ * 签发token
+ * @param {*} uid  用户ID
+ * @param {*} scope 权限
+ */
+const generateToken = function (data) {
+  const secretKey = config.getItem('tokenSecretKey')
+  const expiresIn = config.getItem('tokenExpiresIn')
+  const token = jwt.sign(data, secretKey, {
+    expiresIn: expiresIn
+  })
   return token
 }
 
+const checkToken = async function (token) {
+  const secretKey = config.getItem('tokenSecretKey')
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, secretKey, (err, res)=>{
+      if(!err){
+        return resolve(res)
+      }else {
+        console.log(err)
+        return reject(new AuthFailed('token验证失败'))
+      }
+    })
+  })
+}
 
-/**
- * 进行SHA1加密
- * @param { String } value 原值
- * @return { String } SHA1 值
- */
-
- const toSha1 = function(value){
-   const sha1 = crypto.createHash('sha1')
-   sha1.update(value)
-   return sha1.digest('hex')
- }
-
-export { findMembers, generateToken, toSha1 }
+export { findMembers, generateToken, checkToken }

@@ -7,6 +7,7 @@ import bodyParser from 'koa-bodyparser'
 import koaStatic from 'koa-static'
 import views from 'koa-views'
 import config from './plugin/config-util'
+import jwtKoa from 'koa-jwt'
 import router from './routes'
 import { responseFormat } from '~/middleware/responseFormat'
 
@@ -29,7 +30,6 @@ async function createApp () {
   app.use(koaLogger())
   app.use(responseFormat())
 
-
   // 配置跨域
   app.use(cors())
 
@@ -49,10 +49,20 @@ async function createApp () {
     })
   )
 
+  // 加验证，
+  // 白名单：
+  // 普通非cms开头的路径
+  // cms/account/login
+  // cms/user/register
+
+  app.use(
+    jwtKoa({ secret: config.getItem('tokenSecretKey'), debug: true }).unless({
+      path: [/^(?!(\/cms))/, /\/cms\/account\/login/, /\/cms\/user\/register/]
+    })
+  )
+
   // 配置路由
   app.use(router.routes(), router.allowedMethods())
-
-  
 
   return app
 }
