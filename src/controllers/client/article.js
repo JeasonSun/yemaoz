@@ -28,7 +28,7 @@ async function articleDetail (ctx) {
 ### 3.1 标题
 
 在文字写书写不同数量的#可以完成不同的标题，如下：`)
-  await ctx.render('client/page/article', {
+  return ctx.render('client/page/article', {
     title,
     detail: {
       id: 432432423,

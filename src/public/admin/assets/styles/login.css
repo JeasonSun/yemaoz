@@ -1,0 +1,16 @@
+.login-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+.login-poster{
+  flex: 1;
+  background: url('../image/login.svg') no-repeat;
+  background-size: contain;
+  background-position: center center;
+}
+.login-form{
+  flex: 1;
+}

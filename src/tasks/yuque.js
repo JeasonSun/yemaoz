@@ -16,3 +16,10 @@ export async function getDocs (id) {
   const articles = await fetch.get(`/repos/${id}/docs`)
   return articles
 }
+
+export async function getDocDetail (repoId, id) {
+  console.log('获取detail', repoId, id)
+  const article = await fetch.get(`/repos/${repoId}/docs/${id}`)
+  return article
+}
+

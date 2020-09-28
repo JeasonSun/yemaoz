@@ -12,7 +12,7 @@ async function indexPage (ctx) {
       }
     ]
   }))
-  await ctx.render('client/page/home', {
+  return ctx.render('client/page/home', {
     title,
     latest: list
   })
