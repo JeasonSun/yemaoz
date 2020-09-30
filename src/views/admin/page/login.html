@@ -11,19 +11,49 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <title><%= title %> - 夜猫子后台管理</title>
+    <link rel="stylesheet" href="/common/styles/font/iconfont.css" />
     <link rel="stylesheet" href="/admin/assets/styles/common.css" />
     <link rel="stylesheet" href="/admin/assets/styles/login.css" />
-
+    <script src="/common/js/jquery-3.5.1.min.js"></script>
   </head>
   <body>
+    <div class="login-header">
+      <div class="logo"></div>
+    </div>
     <div class="login-container">
       <div class="login-poster"></div>
       <div class="login-form">
-        <div class="login-form__title">
-          <h3>后台管理系统登录</h3>
-          <p>欢迎登录夜猫子博客系统</p>
+        <div class="login-form__container">
+          <div class="login-form__title">
+            <h3>后台管理系统登录</h3>
+            <p>欢迎登录夜猫子博客系统</p>
+          </div>
+          <div class="login-form__content">
+            <div class="login-form__item">
+              <div class="login-form__input">
+                <input type="text" name="username" id="username" />
+                <label for="username">
+                  <span class="iconfont icon-user"></span>
+                </label>
+              </div>
+            </div>
+            <div class="login-form__item">
+              <div class="login-form__input">
+                <input type="password" name="password" id="password"/>
+                <label for="password">
+                  <span class="iconfont icon-lock"></span>
+                </label>
+              </div>
+            </div>
+            <div class="login-form__item">
+              <a class="login-form__button" id="login-btn">
+                登录
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <script src="/admin/assets/js/login.js"></script>
   </body>
 </html>

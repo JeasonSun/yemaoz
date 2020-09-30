@@ -5,6 +5,7 @@ class UserDao {
   async findUser (where) {
     // const user = usersModel.find({});
     // console.log(where)
+    // console.log(where)
     const user = await usersModel.findOne(where)
     return user
   }

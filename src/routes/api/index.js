@@ -11,10 +11,13 @@ const router = new Router({
   prefix: '/cms'
 })
 
+router.post('/account/login', Account.login)
+
+
 router.post('/admin/create', Admin.create)
 router.post('/user/register', User.register)
 
-router.post('/account/login', Account.login)
+
 router.post('/account/logout', Account.logout)
 router.get('/account/info', Account.info)
 

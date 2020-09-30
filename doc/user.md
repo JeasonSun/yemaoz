@@ -40,17 +40,17 @@ POST    /cms/user/register
 }
 ```
 
-## 用户登录 [TODO]
+## 用户登录 [DONE]
 
 ``` http
-POST    /cms/user/login
+POST    /cms/account/login
 ```
 
 ### 参数说明
 
 | 参数      | 说明     | 是否必填 |
 | --------- | -------- | :------: |
-| username  | 用户名     |    是    |
+| email  | 用户名     |    是    |
 | password  | 密码     |    是    |
 
 ### 成功操作返回

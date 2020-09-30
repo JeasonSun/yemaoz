@@ -146,10 +146,11 @@ a {
   height: 0;
 }
 html,body{
+  height: 100%;
   min-height: 100%;
   width: 100%;
   position: relative;
-  display: flex;
+  /* display: flex; */
 }
 
 .main-wrap {

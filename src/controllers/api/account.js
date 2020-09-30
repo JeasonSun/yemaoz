@@ -18,7 +18,7 @@ async function login (ctx) {
   if (!user) {
     return ctx.fail('用户不存在，请输入正确账号')
   }
-
+console.log('user', user)
   const isMatch = await userDao.compare(password, user.password)
 
   if (!isMatch) {
@@ -36,7 +36,7 @@ async function login (ctx) {
   const token = generateToken(userInfo)
 
   // //返回结果
-  ctx.success({
+  return ctx.success({
     token
   })
 }

@@ -1,0 +1,23 @@
+{
+  "id": "2108948",
+  "name": "yemaoz",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "3661008",
+      "name": "password",
+      "font_class": "mima",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "6610451",
+      "name": "user",
+      "font_class": "user",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    }
+  ]
+}
