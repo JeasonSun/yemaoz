@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
+import { dateformat } from './model.util'
 
 const ArticleSchema = new Schema(
   {
@@ -32,8 +33,14 @@ const ArticleSchema = new Schema(
     },
     user_id: Number, // 语雀的用户ID
     content_updated_at: Date,
-    created_at: Date,
-    updated_at: Date
+    created_at: {
+      type: Date,
+      get: dateformat
+    },
+    updated_at: {
+      type: Date,
+      get: dateformat
+    }
   },
   {
     id: false,

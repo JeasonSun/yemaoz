@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <%- include('../components/header/header.html'); %>
+  <link rel="stylesheet" href="/admin/assets/styles/layout.css">
+  <link rel="stylesheet" href="/admin/assets/styles/dashboard.css">
+</head>
+
+<body>
+
+  <div class="main-container">
+    <%- include('../components/layout/layout-sidebar.html'); %>
+
+    <div class="content-container">
+      <%- include('../components/layout/layout-content-header.html'); %>
+
+      <div class="page-container">
+        <div class="page-header">
+          <div class="ymz-breadcrumb">
+            <span class="ymz-breadcrumb-link">
+              <a href="/admin/dashboard">首页</a>
+            </span>
+            <span class="ymz-breadcrumb-separator">/</span>
+            <span class="ymz-breadcrumb-link">
+              <a href="/admin/dashboard">工作台</a>
+            </span>
+          </div>
+          <div class="page-title">
+            工作台
+          </div>
+          <div class="page-title-content">
+            Hi，你好，欢迎来到夜猫子管理后台，祝你开心每一天~
+          </div>
+        </div>
+        <div class="page-content">
+          <!-- <div class="card-container weui-flex">
+            <div class="ymz-card weui-flex__item">
+              <div class="ymz-card-header">
+                <div class="ymz-card-title__text">
+                  语雀发布文章
+                </div>
+                <div class="ymz-card-title__action">
+                  <a href="">更多</a>
+                </div>
+              </div>
+              <div class="ymz-card-content">
+                
+                <ul class="ymz-list">
+                  <li>测试文章</li>
+                </ul>
+              </div>
+            </div>
+            <div class="ymz-card weui-flex__item">
+              <div class="ymz-card-header">
+                <div class="ymz-card-title__text">
+                  已发布文章页
+                </div>
+                <div class="ymz-card-title__action">
+                  <a href="">更多</a>
+                </div>
+              </div>
+              <div class="ymz-card-content">
+                <ul class="ymz-list">
+                  <li>测试文章</li>
+                </ul>
+              </div>
+            </div>
+            <div class="ymz-card weui-flex__item">
+              <div class="ymz-card-header">
+                <div class="ymz-card-title__text">
+                  后台管理员页
+                </div>
+                <div class="ymz-card-title__action">
+                  <a href="">更多</a>
+                </div>
+              </div>
+              <div class="ymz-card-content">
+                <ul class="ymz-list">
+                  <li>测试文章</li>
+                </ul>
+              </div>
+            </div>
+          </div> -->
+          <div class="welcome-container">
+            <div class="welcome-poster-container">
+              <img src="/admin/assets/image/welcome.svg" alt="" class="welcome-poster">
+            </div>
+            <div class="welcome-text">
+              <h3>
+                欢迎来到「夜猫子前端日记」后台管理系统
+              </h3>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/admin/assets/js/dashboard.js"></script>
+</body>

@@ -1,5 +1,6 @@
 import categoryModel from '~/models/category.model'
 import moment from 'moment'
+import { getRepos } from '~/tasks/yuque'
 
 class CategoryDao {
   async save (data) {
@@ -29,6 +30,18 @@ class CategoryDao {
     // console.log(where)
     const cate = await categoryModel.findById(id)
     return cate
+  }
+
+
+  async fetchList () {
+    const repos = await getRepos()
+    const list = (repos && repos.data) || []
+    const allList = await Promise.all(
+      list.map(cate => {
+        return this.save(cate)
+      })
+    )
+    return allList
   }
 }
 

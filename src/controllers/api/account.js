@@ -1,6 +1,7 @@
 import { LoginValidator } from '~/validators/account.validator'
 import { UserDao } from '~/dao/user.dao'
 import { generateToken } from '~/plugin/utils/index'
+import { use } from 'marked'
 
 const userDao = new UserDao()
 
@@ -18,7 +19,7 @@ async function login (ctx) {
   if (!user) {
     return ctx.fail('用户不存在，请输入正确账号')
   }
-console.log('user', user)
+
   const isMatch = await userDao.compare(password, user.password)
 
   if (!isMatch) {
@@ -33,11 +34,17 @@ console.log('user', user)
     nickname: user.nickname,
     scope: user.scope
   }
-  const token = generateToken(userInfo)
 
+  let session = ctx.session
+  session.isLogin = true
+  session.userInfo = userInfo
+
+  // const token = generateToken(userInfo)
+
+  
   // //返回结果
   return ctx.success({
-    token
+    userId: user._id
   })
 }
 
@@ -64,10 +71,21 @@ async function logout (ctx) {
  * @param ctx
  */
 async function info (ctx) {
-  
-  console.log(ctx)
+  // 获取用户ID
+  const id = ctx.auth.uid
 
-  ctx.success('userInfo')
+  // 查询用户信息
+  const userInfo = await userDao.findUser({ _id: id })
+  const { email, nickname, scope, type, username, id: _id } = userInfo
+
+  ctx.success({
+    email,
+    nickname,
+    scope,
+    type,
+    username,
+    id
+  })
 }
 
 export default { login, logout, info }

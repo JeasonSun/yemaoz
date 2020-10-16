@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <%- include('../components/header/header.html'); %>
+  <link rel="stylesheet" href="/admin/assets/styles/layout.css">
+  <link rel="stylesheet" href="/admin/assets/styles/category.css">
+
+
+
+</head>
+
+<body>
+
+  <div class="main-container">
+    <%- include('../components/layout/layout-sidebar.html'); %>
+
+    <div class="content-container">
+      <%- include('../components/layout/layout-content-header.html'); %>
+      <div class="page-container">
+        <div class="page-header">
+          <div class="ymz-breadcrumb">
+            <span class="ymz-breadcrumb-link">
+              <a href="/admin/dashboard">首页</a>
+            </span>
+            <span class="ymz-breadcrumb-separator">/</span>
+            <span class="ymz-breadcrumb-link">
+              <a href="/admin/category">语雀知识库管理</a>
+            </span>
+          </div>
+          <div class="page-title">
+            语雀知识库管理-分类管理
+          </div>
+          <div class="page-title-content">
+            本页展示语雀的知识库列表，即可以对文章进行分类管理。
+          </div>
+        </div>
+        <div class="page-content">
+          <div class="category-list-container">
+            <% for(var i=0; i< list.length; i++){ %>
+            <div class="ymz-card category-card">
+              <div class="ymz-card-content">
+                <div class="category-card-header">
+                  <div class="category-name">
+                    <span>
+                      <%= list[i].name %>
+                    </span>
+                    <% if(list[i].dirty == 1){ %>
+                      <i class="iconfont icon-update" title="有更新"></i>
+                      <% } %>
+                  </div>
+                  <div class="category-action">
+                    <a href="/admin/category/<%= list[i]._id %>">
+                      <i class="iconfont icon-set"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="category-card-description">
+                  <%= list[i].description %>
+                </div>
+                <div class="category-card-list">
+                  <ul>
+                    <li>
+                      测试列表
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/admin/assets/js/category.js"></script>
+</body>

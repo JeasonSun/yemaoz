@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import config from '~/plugin/config-util'
 
-const ConnectMongo = function () {
+const ConnectMongo =async function () {
   const dbHost = config.getItem('dbHost')
   const dbPort = config.getItem('dbPort')
   const dbName = config.getItem('dbName')
@@ -14,7 +14,7 @@ const ConnectMongo = function () {
     dbUrl = `mongodb://${dbHost}:${dbPort}/${dbName}`
   }
 
-  mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+  
 
   mongoose.connection.on('connected', function () {
     console.log('Mongoose连接成功： ' + dbName)
@@ -31,6 +31,10 @@ const ConnectMongo = function () {
   mongoose.connection.on('disconnected', function () {
     console.log('Mongoose 连接断开')
   })
+
+  const connection = await mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+
+  return connection
 }
 
 export { ConnectMongo }

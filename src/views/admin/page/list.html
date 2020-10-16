@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <%- include('../components/header/header.html'); %>
+  <link rel="stylesheet" href="/admin/assets/styles/layout.css">
+</head>
+
+<body>
+
+  <div class="main-container">
+    <%- include('../components/layout/layout-sidebar.html'); %>
+
+    <div class="content-container">
+      <%- include('../components/layout/layout-content-header.html'); %>
+      <div class="page-container">
+        <div class="page-header">
+          <div class="ymz-breadcrumb">
+            <span class="ymz-breadcrumb-link">
+              <a href="/admin/dashboard">首页</a>
+            </span>
+            <span class="ymz-breadcrumb-separator">/</span>
+            <span class="ymz-breadcrumb-link">
+              <a href="/admin/category">语雀知识库管理</a>
+            </span>
+            <span class="ymz-breadcrumb-separator">/</span>
+            <span class="ymz-breadcrumb-link">
+              <%= locals.category.name %>
+            </span>
+          </div>
+          <div class="page-title">
+            「分类」<%= locals.category.name %>
+          </div>
+          <div class="page-title-content">
+            <%= locals.category.description %>
+          </div>
+        </div>
+        <div class="page-content">
+          <div class="ymz-table">
+            <table style="table-layout: auto;">
+              <colgroup></colgroup>
+              <thead class="ymz-table-thead">
+                <tr>
+                  <th class="ymz-table-cell">名称</th>
+                  <th class="ymz-table-cell">作者</th>
+                  <th class="ymz-table-cell">更新时间</th>
+                  <th class="ymz-table-cell">详情</th>
+                  <th class="ymz-table-cell">操作</th>
+                </tr>
+              </thead>
+              <tbody class="ymz-table-tbody">
+                <% for(var i =0;i<locals.list.length; i++){ %>
+                <tr data-row-key="1" class="ymz-table-row ymz-table-row-level-0">
+                  <td class="ymz-table-cell"><a>
+                      <%= list[i].title%>
+                    </a></td>
+                  <td class="ymz-table-cell">
+                    <%= list[i].user_id %>
+                  </td>
+                  <td class="ymz-table-cell">
+                    <%= list[i].updated_at%>
+                  </td>
+                  <td class="ymz-table-cell">
+                    查看
+                    <%= list[i].y_status %>
+                  </td>
+                  <td class="ymz-table-cell">
+                    <% if(list[i].y_status == 0){ %>
+                    <button type="button" class="ymz-btn btn-update"><span>更新</span></button>
+                    <% } %>
+
+                    <% if(list[i].y_status == 1){ %>
+
+                    <% if(list[i].y_publish == 0){ %>
+                    <button type="button" class="ymz-btn btn-primary"><span>发布</span></button>
+                    <% } else { %>
+                    <button type="button" class="ymz-btn btn-delete"><span>撤销</span></button>
+                    <% } %>
+                    <% } %>
+                  </td>
+                </tr>
+                <% } %>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/admin/assets/js/yuque.js"></script>
+</body>

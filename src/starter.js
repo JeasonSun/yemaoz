@@ -2,7 +2,6 @@ import path from 'path'
 import fs from 'fs'
 
 import config from './plugin/config-util'
-import { ConnectMongo } from './db/monogo.db'
 import { createApp } from './app'
 
 function applyConfig () {
@@ -15,7 +14,7 @@ function applyConfig () {
 
 const run = async () => {
   applyConfig()
-  ConnectMongo()
+  
   const app = await createApp()
   const port = config.getItem('port')
   app.listen(port, () => {

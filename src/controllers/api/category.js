@@ -15,16 +15,17 @@ const articleDao = new ArticleDao()
  */
 async function list (ctx) {
   // 1.拉取数据
-  const repos = await getRepos()
-  const list = (repos && repos.data) || []
-  const allList = await Promise.all(
-    list.map(cate => {
-      return cateDao.save(cate)
-    })
-  )
+  // const repos = await getRepos()
+  // const list = (repos && repos.data) || []
+  // const allList = await Promise.all(
+  //   list.map(cate => {
+  //     return cateDao.save(cate)
+  //   })
+  // )
+  const list = await cateDao.fetchList()
 
   ctx.success({
-    list: allList
+    list
   })
 }
 

@@ -1,0 +1,19 @@
+<div class="header">
+  <div class="content-header-container">
+    <div class="header-blank"></div>
+    <div class="user-info-container">
+      <div class="avatar-container">
+        <img src="/common/image/avatar.svg" alt="avatar" class="avatar-img">
+      </div>
+      <div class="user-name">
+        <%= locals.userInfo && locals.userInfo.username || '用户名' %>
+      </div>
+    </div>
+    <div class="logout-container ">
+      <a href="javascript:;">
+        <i class="iconfont icon-Log_out"></i>
+        <span>退出</span>
+      </a>
+    </div>
+  </div>
+</div>

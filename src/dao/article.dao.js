@@ -1,5 +1,7 @@
 import articleModel from '~/models/article.model'
 import moment from 'moment'
+import { getDocs } from '~/tasks/yuque'
+import { DATEFORMAT } from '~/models/model.util'
 
 class ArticleDao {
   async create (data) {
@@ -8,11 +10,12 @@ class ArticleDao {
 
     let updatedArticle = article
     if (article) {
-      const yuqueLastDate = moment(data.updated_at).toString()
-      const yemaozLastDate = moment(article.updated_at).toString()
+      const yuqueLastDate = moment(data.updated_at).format(DATEFORMAT)
+      // const yemaozLastDate = moment(article.updated_at).toString()
+      console.log(yuqueLastDate, article.updated_at)
       // 如果上次更新时间和本次不相同，需要更新
-      if (yuqueLastDate !== yemaozLastDate) {
-        updatedCategory = await articleModel.update(
+      if (yuqueLastDate !== article.updated_at) {
+        updatedArticle = await articleModel.update(
           { _id: id },
           { y_status: 0, ...rest }
         )
@@ -52,6 +55,19 @@ class ArticleDao {
   }
 
   async createOrUpdate (data) {}
+
+  async fetchList (id) {
+    const articles = await getDocs(id)
+    const list = (articles && articles.data) || []
+    const localList = await Promise.all(
+      list.map(article => {
+        return this.create(article)
+      })
+    )
+    return localList
+
+    // const dirtyList = updated.filter(article => article.y_status === 0)
+  }
 }
 
 export { ArticleDao }
