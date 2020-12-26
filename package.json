@@ -6,8 +6,10 @@
   "scripts": {
     "watch": "babel src --copy-files --watch --out-dir dist --ignore src/public --verbose --source-maps",
     "dev": "cross-env NODE_ENV=development nodemon dist/starter.js",
+    "start":"npm run watch && npm run dev",
     "build": "babel src --copy-files --out-dir dist --ignore src/public --verbose --source-maps",
-    "prod": "cross-env NODE_ENV=production npm run build && node dist/starter.js"
+    "prod": "cross-env NODE_ENV=production npm run build && node dist/starter.js",
+    "deploy": "pm2 deploy ecosystem.json production"
   },
   "keywords": [
     "Node",
