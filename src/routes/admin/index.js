@@ -21,5 +21,10 @@ router.get('/category', Dashboard.category)
 // 某分类下的文章列表
 router.get('/category/:id', Dashboard.list)
 
+// 没有找到路由，跳转admin首页
+router.get('/', function(ctx){
+  ctx.response.redirect('/admin/dashboard')
+})
+
 
 export default router
